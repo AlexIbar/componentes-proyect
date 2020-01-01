@@ -1,0 +1,12 @@
+{
+  "name": "componentes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "node main.js componentes/ventanaProductos:/integrado"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
