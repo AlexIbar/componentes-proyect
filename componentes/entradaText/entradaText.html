@@ -1,6 +1,6 @@
 <div class="entrada">
-    <input type="text" required id="entradaText">
-    <label for="entradaText">Nombre</label>
+    <input type="${tipo}" ${holder !== "" ? holder : ""} required id="${forId}">
+    ${label}
 </div>
 <style>
     .entrada input{
@@ -24,6 +24,12 @@
     .entrada input:valid~label{
         font-size: 12px;
         bottom: 28px;
+    }
+    .error-label{
+        color:#F44336
+    }
+    .error-input{
+        border-bottom: 1px solid #F44336 !important
     }
     .entrada{
         position: relative;

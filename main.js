@@ -42,7 +42,7 @@ setInterval(()=>{
 function crearArchivo() {
     var newArchivo;
     fs.readFile(path.join(__dirname, a[1],archivos), 'utf-8', (err, data)=>{
-        newArchivo = "function "+archivos.split('.')[0]+"(){ return'"+html+"'} \n"+javascript
+        newArchivo = "function "+archivos.split('.')[0]+"(){ return `"+html+"`} \n"+javascript
         if(data !== newArchivo){
             fs.writeFile(path.join(__dirname, a[1], archivos), newArchivo, (err) => {
                 if (err) {
