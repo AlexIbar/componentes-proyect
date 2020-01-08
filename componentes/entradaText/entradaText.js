@@ -1,31 +1,29 @@
-var tipo = 'text',
-label = '',
-forId = '',
-holder = ''
-
 class Entrada extends HTMLElement{
     constructor(){
         super()
+        this.tipo = 'text'
+        this.label = ''
+        this.forId = ''
+        this.holder = '';
         this.iniciar()
     }
     attributeChangedCallback(name, beforeValue, newValue){
-        console.log(newValue)
         if(name == 'tipo'){
-            tipo = newValue
+            this.tipo = newValue
         }
         if(name == 'label'){
             let identificador = newValue
-            forId = newValue.split(' ').join('')
-            label = `<label for="${forId}">${identificador}</label>`
-            holder=''
+            this.forId = newValue.split(' ').join('')
+            this.label = `<label for="${this.forId}">${identificador}</label>`
+            this.holder=''
         }
         if(name == 'placeholder'){
-            holder = "placeholder='"+newValue+"'"
-            label=''
+            this.holder = "placeholder='"+newValue+"'"
+            this.label=''
         }
     }
     connectedCallback(){
-        this.root.innerHTML = entradaText()
+        this.root.innerHTML = entradaText(this)
         this.root.querySelector('input').addEventListener('blur', ()=>{
             this.verificar()
         })

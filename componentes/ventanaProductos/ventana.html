@@ -1,10 +1,10 @@
 <section class="ventana">
     <article class="inicial-img">
         <img class="producto"
-            src="${foto}" alt="">
+            src="${e.foto}" alt="">
         <div class="titulo-ge">
             <div class="titulo">
-                ${titulo}
+                ${e.titulo}
             </div>
             <!--Slot para dar la funcionalidad-->
             <slot name="icon-plus"></slot>
@@ -12,10 +12,10 @@
     </article>
     <article class="contenido-dos">
         <div class="subtitulo">
-            ${subtitulo}
+            ${e.subtitulo}
         </div>
         <div class="descripccion">
-            ${descripccion}
+            ${e.descripcion}
         </div>
     </article>
 </section>

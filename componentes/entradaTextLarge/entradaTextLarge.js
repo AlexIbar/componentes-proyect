@@ -1,11 +1,11 @@
-let label = ''
 class EntradaParrafo extends HTMLElement{
     constructor(){
         super()
+        this.label
     }
     iniciar(){
             this.root = this.attachShadow({mode:'open'})
-            this.root.innerHTML = entradaTextLarge()
+            this.root.innerHTML = entradaTextLarge(this)
             this.verificarLabel()
             this.root.querySelector('.entrada-parrafo').addEventListener('blur', ()=>{
                 this.verificarDatos()
@@ -26,7 +26,7 @@ class EntradaParrafo extends HTMLElement{
     }
     attributeChangedCallback(nombre, beforeValue, newValue){
         if(nombre == 'label'){
-            label = '<label>'+newValue+'</label>'
+            this.label = '<label>'+newValue+'</label>'
         }
     }
     connectedCallback(){

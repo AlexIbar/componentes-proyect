@@ -1,32 +1,30 @@
-function entradaText(){ return `<div class="entrada"><input type="${tipo}" ${holder !== "" ? holder : ""} required id="${forId}">${label}</div><style>.entrada input{width: 100%;background-color: transparent;border: none;outline: none;border-bottom:1px solid black;font-size: 16px;height: 2rem;font-family: Arial, Helvetica, sans-serif;}.entrada input:focus{border-bottom:1px solid #49ab00}.entrada input:focus~label{font-size: 12px;bottom: 28px;color: #49ab00;}.entrada input:valid~label{font-size: 12px;bottom: 28px;}.error-label{color:#F44336}.error-input{border-bottom: 1px solid #F44336 !important}.entrada{position: relative;}.entrada label{font-size: 18px;position: absolute;left: 2px;bottom: 7px;user-select: none;}</style>`} 
-var tipo = 'text',
-label = '',
-forId = '',
-holder = ''
-
+function entradaText(e){ return `<div class="entrada"><input type="${e.tipo}" ${e.holder !== "" ? e.holder : ""} required id="${e.forId}">${e.label}</div><style>.entrada input{width: 100%;background-color: transparent;border: none;outline: none;border-bottom:1px solid black;font-size: 16px;height: 2rem;font-family: Arial, Helvetica, sans-serif;}.entrada input:focus{border-bottom:1px solid #49ab00}.entrada input:focus~label{font-size: 12px;bottom: 28px;color: #49ab00;}.entrada input:valid~label{font-size: 12px;bottom: 28px;}.error-label{color:#F44336}.error-input{border-bottom: 1px solid #F44336 !important}.entrada{position: relative;}.entrada label{font-size: 18px;position: absolute;left: 2px;bottom: 7px;user-select: none;}</style>`} 
 class Entrada extends HTMLElement{
     constructor(){
         super()
+        this.tipo = 'text'
+        this.label = ''
+        this.forId = ''
+        this.holder = '';
         this.iniciar()
     }
     attributeChangedCallback(name, beforeValue, newValue){
-        console.log(newValue)
         if(name == 'tipo'){
-            tipo = newValue
+            this.tipo = newValue
         }
         if(name == 'label'){
             let identificador = newValue
-            forId = newValue.split(' ').join('')
-            label = `<label for="${forId}">${identificador}</label>`
-            holder=''
+            this.forId = newValue.split(' ').join('')
+            this.label = `<label for="${this.forId}">${identificador}</label>`
+            this.holder=''
         }
         if(name == 'placeholder'){
-            holder = "placeholder='"+newValue+"'"
-            label=''
+            this.holder = "placeholder='"+newValue+"'"
+            this.label=''
         }
     }
     connectedCallback(){
-        this.root.innerHTML = entradaText()
+        this.root.innerHTML = entradaText(this)
         this.root.querySelector('input').addEventListener('blur', ()=>{
             this.verificar()
         })

@@ -1,24 +1,23 @@
-function ventana(){ return'<section class="ventana"><article class="inicial-img"><img class="producto"src="'+foto+'" alt=""><div class="titulo-ge"><div class="titulo">'+titulo+'</div><!--Slot para dar la funcionalidad--><slot name="icon-plus"></slot></div></article><article class="contenido-dos"><div class="subtitulo">'+subtitulo+'</div><div class="descripccion">'+descripcion+'</div></article></section><style>* {margin: 0px;padding: 0px;}.ventana {width: 300px;height: 350px;border-radius: 10px;-webkit-box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.75);-moz-box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.75);box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.75);}.producto {width: 300px;height: 180px;object-fit: cover;object-position: top left;border-top-right-radius: 10px;border-top-left-radius: 10px;}.inicial-img {position: relative;}.titulo {font-weight: bold;text-transform: uppercase;bottom: 0px;padding-left: 10px;padding-top: 10px;font-size: 20px;box-sizing: content-box;}.titulo-ge {position: absolute;top: 150px;display: grid;grid-template-columns: 1fr 60px;width: 100%;background-color:rgba(255, 255, 255, 0.507);}.contenido-dos{margin: 10px 15px 0px 15px;text-align: justify;height: 135px;overflow: hidden;}.subtitulo{font-size: 12px;margin-bottom: 10px;}</style>'} 
-let titulo = null,
-subtitulo = null,
-descripcion = null,
-foto = null
-
+function ventana(e){ return `<section class="ventana"><article class="inicial-img"><img class="producto"src="${e.foto}" alt=""><div class="titulo-ge"><div class="titulo">${e.titulo}</div><!--Slot para dar la funcionalidad--><slot name="icon-plus"></slot></div></article><article class="contenido-dos"><div class="subtitulo">${e.subtitulo}</div><div class="descripccion">${e.descripcion}</div></article></section><style>* {margin: 0px;padding: 0px;}.ventana {width: 300px;height: 350px;border-radius: 10px;-webkit-box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.75);-moz-box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.75);box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.75);}.producto {width: 300px;height: 180px;object-fit: cover;object-position: top left;border-top-right-radius: 10px;border-top-left-radius: 10px;}.inicial-img {position: relative;}.titulo {font-weight: bold;text-transform: uppercase;bottom: 0px;padding-left: 10px;padding-top: 10px;font-size: 20px;box-sizing: content-box;}.titulo-ge {position: absolute;top: 150px;display: grid;grid-template-columns: 1fr 60px;width: 100%;background-color:rgba(255, 255, 255, 0.507);}.contenido-dos{margin: 10px 15px 0px 15px;text-align: justify;height: 135px;overflow: hidden;}.subtitulo{font-size: 12px;margin-bottom: 10px;}</style>`} 
 class VentanaInit extends HTMLElement {
     constructor(){
         super()
+        this.titulo = null
+        this.subtitulo = null
+        this.descripcion = null
+        this.foto = null
     }
     agregarCambio(){
         let root = this.attachShadow({mode:'closed'})
-        root.innerHTML = ventana()
+        root.innerHTML = ventana(this)
     }
     attributeChangedCallback(nombre, valorAnterior, nuevoValor){
         if(nombre == 'datos'){
             let a = JSON.parse(nuevoValor)
-            descripcion = a.descripcion
-            foto = a.foto_producto,
-            titulo = a.nombre_producto
-            subtitulo = a.cliente_producto
+            this.descripcion = a.descripcion
+            this.foto = a.foto_producto,
+            this.titulo = a.nombre_producto
+            this.subtitulo = a.cliente_producto
             this.agregarCambio()
         }
     }
