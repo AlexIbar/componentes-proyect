@@ -4,7 +4,7 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "test": "node main.js componentes/entradaTextLarge:/integrado"
+    "test": "node main.js componentes/entradaText:/integrado"
   },
   "keywords": [],
   "author": "",
