@@ -45,7 +45,6 @@ class EntradaSelect extends HTMLElement{
     }
     attributeChangedCallback(name, beforeValue, newValue){
         if(name == 'label'){
-            console.log(newValue)
             this.label =  newValue
         }
         if(name == 'listaselect'){
